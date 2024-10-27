@@ -1,5 +1,5 @@
 # Kakarot
 
 ```shell
-bash <(https://raw.githubusercontent.com/uangdrop/Kakarot/refs/heads/main/Kakarot.sh)
+bash <(curl -s https://raw.githubusercontent.com/uangdrop/Kakarot/refs/heads/main/Kakarot.sh)
 ```
