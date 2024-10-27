@@ -31,14 +31,14 @@ show "Fetching and running logo script..." "progress"
 sleep 2
 curl -s https://file.winsnip.xyz/file/uploads/Logo-winsip.sh | bash
 
-show "Starting Deploy taiko..." "progress"
+show "Starting Deploy kakarot..." "progress"
 sleep 2
 
 set -eo pipefail
 
-if [ -d "taiko" ]; then
-  rm -rf taiko
-  show "Removed existing taiko folder." "done"
+if [ -d "kakarot" ]; then
+  rm -rf kakarot
+  show "Removed existing kakarot folder." "done"
 fi
 
 show "Installing foundryup..." "progress"
@@ -74,8 +74,8 @@ export PATH="$FOUNDRY_BIN_DIR:$PATH"
 show "Foundryup installed successfully."
 foundryup
 
-show "Setting up taiko and OpenZeppelin..." "progress"
-mkdir -p taiko && cd taiko
+show "Setting up kakarot and OpenZeppelin..." "progress"
+mkdir -p kakarot && cd kakarot
 
 echo "Choose an option:"
 echo "1) Deploy ERC20 Token only"
@@ -87,7 +87,7 @@ deploy_erc20() {
   mkdir -p winsnip
   cat <<EOF > foundry.toml
 [rpc_endpoints]
-taiko = "https://sepolia-rpc.kakarot.org"
+kakarot = "https://sepolia-rpc.kakarot.org"
 EOF
 
   if [ ! -d "./openzeppelin" ]; then
@@ -174,7 +174,7 @@ EOF
           echo "Error sending tokens to $RANDOM_ADDRESS"
       fi
   done
-  show "https://bartio.beratrail.io/address/$YOUR_ADDRESS#tokentxns" "done"
+  show "https://sepolia.kakarotscan.org/address/$YOUR_ADDRESS#tokentxns" "done"
   show "All tokens sent successfully." "done"
 }
 
@@ -192,7 +192,7 @@ deploy_nft() {
 
   cat <<EOF > foundry.toml
 [rpc_endpoints]
-taiko = "https://sepolia-rpc.kakarot.org"
+kakarot= "https://sepolia-rpc.kakarot.org"
 EOF
 
   cat <<EOF > winsnip/MyNFT.sol
@@ -244,7 +244,7 @@ EOF
         MINT_CMD="cast send \"$NFT_CONTRACT_ADDRESS\" \"safeMint(address,string)\" \"$RANDOM_ADDRESS\" \"$TOKEN_URI\" --rpc-url https://sepolia-rpc.kakarot.org --private-key \"$YOUR_PRIVATE_KEY\""
         eval $MINT_CMD
     done
-  show "NFT contract can be viewed at: https://taikoexplorer.com/$NFT_CONTRACT_ADDRESS" "done"
+  show "NFT contract can be viewed at: https://sepolia.kakarotscan.org/$NFT_CONTRACT_ADDRESS" "done"
   show "All NFTs minted successfully." "done"
 }
 
